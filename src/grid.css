@@ -1,0 +1,14 @@
+.container {
+    font-size: 40px;
+    width: 100%;
+    /* background: LightGray; */
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+
+}
+
+.Title{background:LightSkyBlue;}
+.Genre{background:LightSalmon;}
+.Stock{background:PaleTurquoise;}
+.Rate{background:LightPink;}
+.blankColumn{background: palegreen}
