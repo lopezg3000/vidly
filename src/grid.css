@@ -1,14 +1,40 @@
 .container {
-    font-size: 40px;
+    /* font-size: 40px; */
     width: 100%;
     /* background: LightGray; */
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(10, 100px);
+    align-items: center;
+    /* grid-gap: 5px; */
+    padding-top: 20px;
 
 }
 
-.Title{background:LightSkyBlue;}
-.Genre{background:LightSalmon;}
-.Stock{background:PaleTurquoise;}
-.Rate{background:LightPink;}
-.blankColumn{background: palegreen}
+
+.columnHeader {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 20px 0 20px 0;
+}
+
+.columnHeader h3{
+        font-weight: bold;
+}
+
+.columnEmptyDiv {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 40.5px;
+} 
+
+.movieInfo {
+    border-bottom: 1px solid gray;
+    padding: 0 0 20px 0;
+}
+
+.buttonContainer {
+    border-bottom: 1px solid gray;
+    padding: 0px 0 6px 0;
+}
+

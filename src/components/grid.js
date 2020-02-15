@@ -5,7 +5,6 @@ import Header from "./dummy"
 const Grid = () => {
     return (
         <div>
-            <h1>Hello World</h1>
             <Header headerItemsArr={["Title", "Genre", "Stock", "Rate"]} />
         </div>
     );

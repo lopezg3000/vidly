@@ -14,21 +14,21 @@ class MovieInfo extends Component {
         return (
             <React.Fragment>
                 {this.state.data.map(movie => (
-                    <React.Fragment>
-                        <div key={movie.title} className={movie.title}>
-                            {movie.title}
+                    <React.Fragment key={movie._id}>
+                        <div className="movieInfo">
+                            <h3>{movie.title}</h3>
                         </div>
-                        <div key={movie.genre.name} className={movie.genre.name}>
-                            {movie.genre.name}
+                        <div className="movieInfo">
+                            <h3>{movie.genre.name}</h3>
                         </div>
-                        <div key={movie.numberInStock} className={movie.numberInStock}>
-                            {movie.numberInStock}
+                        <div className="movieInfo">
+                            <h3>{movie.numberInStock}</h3>
                         </div>
-                        <div key={movie.dailyRentalRate} className={movie.dailyRentalRate}>
-                            {movie.dailyRentalRate}
+                        <div className="movieInfo">
+                            <h3>{movie.dailyRentalRate}</h3>
                         </div>
-                        <div className="deleteButton">
-                            <button>Delete</button>
+                        <div className="buttonContainer">
+                            <button type="button" className="btn btn-danger" ><h3>Delete</h3></button>
                         </div>
                     </React.Fragment>
                 ))}
