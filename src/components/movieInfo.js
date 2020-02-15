@@ -8,45 +8,9 @@ class MovieInfo extends Component {
         error: "",
         data: getMovies()
     }
-    // loadData = () => {
-    //     this.setState({ loading: true });
-    //     return getMovies()
-    //         .then(result => {
-    //             console.log(result)
-    //             this.setState({
-    //                 data: result.movies,
-    //                 loading: false,
-    //                 error: false
-    //             })
-    //         })
-    //         .catch(error => {
-    //             console.error("error: ", error);
-    //             this.setState({
-    //                 error: `${error}`,
-    //                 loading: false
-    //             })
-    //         })
-    // }
-
-    // componentDidMount() {
-    //     this.loadData();
-    // }
 
     render() {
-        // const { loading, error, data } = this.state;
-        // if (loading) {
-        //     return <p>Loading ...</p>;
-        // }
-        // if (error) {
-        //     return (
-        //         <p>
-        //             There was an error loading the repos.{" "}
-        //             <button onClick={this.loadData}>Try again</button>
-        //         </p>
-        //     );
-        // }
 
-        // console.log("This is" + data);
         return (
             <React.Fragment>
                 {this.state.data.map(movie => (
