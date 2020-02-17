@@ -1,14 +1,13 @@
 import React from 'react';
 import "../grid.css"
-import MovieInfo from "./movieInfo"
 
 const Header = props => {
+    console.log(props)
     return (
-        <div className="container">
+        <React.Fragment>
             {props.headerItemsArr.map(headerItem => <div key={headerItem} className="columnHeader"><h3>{headerItem}</h3></div>)}
-            <div className="columnEmptyDiv"></div>
-            <MovieInfo />
-        </div>
+            < div className="columnEmptyDiv" ></div >
+        </React.Fragment>
     )
 }
 
