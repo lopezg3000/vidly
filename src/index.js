@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
-import Grid from "./components/grid"
+import Grid from "./components/Grid"
 
 ReactDOM.render(<Grid />, document.getElementById('root'));
 

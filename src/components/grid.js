@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Header from "./dummy"
-import MovieInfo from "./movieInfo"
+import Header from "./Header"
+import MovieInfo from "./MovieInfo"
 import { getMovies } from "../services/fakeMovieService";
+import Counter from "./Counter";
 import "../grid.css"
 
 
@@ -22,11 +23,19 @@ class Grid extends Component {
 
     render() {
         return (
-            <div className="container">
-                <Header headerItemsArr={["Title", "Genre", "Stock", "Rate"]} count={this.state.count} />
-                <MovieInfo count={this.state.count} data={this.state.data} handleOnClick={this.handleOnClick} />
-            </div>
+            <React.Fragment>
+                <Counter formatCount={this.formatCount()} />
+                <div className="container">
+                    <Header headerItemsArr={["Title", "Genre", "Stock", "Rate"]} count={this.state.count} />
+                    <MovieInfo count={this.state.count} data={this.state.data} handleOnClick={this.handleOnClick} />
+                </div>
+            </React.Fragment>
         );
+    }
+
+    formatCount() {
+        const { count } = this.state;
+        return count === 0 ? "There are no movies in the database" : "Showing " + count + " in the databse.";
     }
 }
 
