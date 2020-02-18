@@ -11,6 +11,21 @@
 
 }
 
+.containerCounter {
+    max-width: 1140px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    justify-items: start;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 40px 15px 10px 15px;
+}
+
+.containerNone {
+    display: none;
+}
+
 
 .columnHeader {
     border-top: 1px solid gray;

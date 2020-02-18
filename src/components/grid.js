@@ -25,7 +25,7 @@ class Grid extends Component {
         return (
             <React.Fragment>
                 <Counter formatCount={this.formatCount()} />
-                <div className="container">
+                <div className={this.getDisplayClasses()}>
                     <Header headerItemsArr={["Title", "Genre", "Stock", "Rate"]} count={this.state.count} />
                     <MovieInfo count={this.state.count} data={this.state.data} handleOnClick={this.handleOnClick} />
                 </div>
@@ -33,9 +33,16 @@ class Grid extends Component {
         );
     }
 
+    getDisplayClasses() {
+        let classes = "";
+        classes += (this.state.count === 0) ? "containerNone" : "container";
+        return classes;
+
+    }
+
     formatCount() {
         const { count } = this.state;
-        return count === 0 ? "There are no movies in the database" : "Showing " + count + " in the databse.";
+        return count === 0 ? "There are no movies in the database" : "Showing " + count + " in the database.";
     }
 }
 

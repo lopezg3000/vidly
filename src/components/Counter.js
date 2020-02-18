@@ -1,9 +1,12 @@
 import React from "react";
+import "../grid.css";
 
 
 const Counter = props => {
     return (
-        <h3>{props.formatCount}</h3>
+        <div className="containerCounter">
+            <h3>{props.formatCount}</h3>
+        </div>
     );
 }
 
