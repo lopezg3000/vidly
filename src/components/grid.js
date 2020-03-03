@@ -14,7 +14,11 @@ class Grid extends Component {
 
     handleLike = movie => {
         console.log("Clicked Like", movie);
-
+        const data = [...this.state.data];
+        const index = data.indexOf(movie);
+        data[index] = { ...data[index] };
+        data[index].liked = !data[index].liked;
+        this.setState({ data });
     };
 
     handleDelete = id => {
