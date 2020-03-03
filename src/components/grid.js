@@ -9,17 +9,22 @@ import "../grid.css"
 class Grid extends Component {
     state = {
         count: 9,
-        data: getMovies()
-    }
+        data: getMovies(),
+    };
 
+    handleLike = movie => {
+        console.log("Clicked Like", movie);
 
-    handleOnClick = (id) => {
+    };
+
+    handleDelete = id => {
         this.setState({
             data: this.state.data.filter(movie => movie._id !== id),
             count: this.state.count - 1
         })
         console.log(this.state.data)
-    }
+    };
+
 
     render() {
         return (
@@ -27,7 +32,12 @@ class Grid extends Component {
                 <Counter formatCount={this.formatCount()} />
                 <div className={this.getDisplayClasses()}>
                     <Header headerItemsArr={["Title", "Genre", "Stock", "Rate"]} count={this.state.count} />
-                    <MovieInfo count={this.state.count} data={this.state.data} handleOnClick={this.handleOnClick} />
+                    <MovieInfo
+                        count={this.state.count}
+                        data={this.state.data}
+                        onDelete={this.handleDelete}
+                        onLike={this.handleLike}
+                    />
                 </div>
             </React.Fragment>
         );
@@ -42,7 +52,7 @@ class Grid extends Component {
 
     formatCount() {
         const { count } = this.state;
-        return count === 0 ? "There are no movies in the database" : "Showing " + count + " in the database.";
+        return count === 0 ? "There are no movies in the database" : "Showing " + count + " movies in the database.";
     }
 }
 

@@ -7,6 +7,7 @@ const Header = props => {
         <React.Fragment>
             {props.headerItemsArr.map(headerItem => <div key={headerItem} className="columnHeader"><h3>{headerItem}</h3></div>)}
             < div className="columnEmptyDiv" ></div >
+            < div className="columnEmptyDiv" ></div >
         </React.Fragment>
     )
 }
