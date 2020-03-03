@@ -3,7 +3,7 @@ import React from "react";
 const Like = props => {
     let classes = "fa fa-heart";
     if (!props.liked) classes += "-o";
-    console.log(props);
+    // console.log(props);
     return (
         <i
             onClick={() => props.onLike(props.movie)}
