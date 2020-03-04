@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Header from "./Header"
-import MovieInfo from "./MovieInfo"
-import { getMovies } from "../services/fakeMovieService";
-import Counter from "./Counter";
-import "../grid.css"
+import MovieInfo from "../grid/MovieInfo"
+import { getMovies } from "../../services/fakeMovieService";
+import Counter from "../Counter";
+import "../../grid.css"
 
 
 class Grid extends Component {
@@ -16,7 +16,7 @@ class Grid extends Component {
         // console.log("Clicked Like", movie);
         const data = [...this.state.data];
         const index = data.indexOf(movie);
-        data[index] = { ...data[index] };
+        data[index] = { ...movie };
         data[index].liked = !data[index].liked;
         this.setState({ data });
     };

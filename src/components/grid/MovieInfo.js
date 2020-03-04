@@ -1,6 +1,6 @@
 import React from 'react';
-import "../grid.css";
-import Like from "./common/Like"
+import "../../grid.css";
+import Like from "../common/Like"
 
 
 const MovieInfo = props => {

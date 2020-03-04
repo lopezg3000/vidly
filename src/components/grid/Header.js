@@ -1,5 +1,5 @@
 import React from 'react';
-import "../grid.css"
+import "../../grid.css"
 
 const Header = props => {
     console.log(props)
