@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from "./Header"
-import MovieInfo from "../grid/MovieInfo"
+import Header from "./GridHeader"
+import MovieInfo from "./GridMovieInfo"
 import { getMovies } from "../../services/fakeMovieService";
 import Counter from "../Counter";
 import "../../grid.css"
