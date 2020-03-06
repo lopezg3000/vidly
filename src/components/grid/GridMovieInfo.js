@@ -5,7 +5,7 @@ import Pagination from "../pagination/Pagination"
 
 const MovieInfo = props => {
     // console.log(props);
-    const { data, onLike, onDelete, count, pageSize } = props;
+    const { data, onLike, onDelete, count, pageSize, onPageChange } = props;
     return (
         <React.Fragment>
             {data.map(movie => (
@@ -31,7 +31,7 @@ const MovieInfo = props => {
                 </React.Fragment>
             ))
             }
-            <h3><Pagination count={count} pageSize={pageSize} /></h3>
+            <h3><Pagination count={count} pageSize={pageSize} onPageChange={onPageChange} /></h3>
         </React.Fragment >
     );
 }

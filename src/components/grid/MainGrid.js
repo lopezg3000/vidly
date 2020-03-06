@@ -13,6 +13,10 @@ class Grid extends Component {
         pageSize: 4
     };
 
+    handlePageChange = page => {
+        console.log(page);
+    };
+
     handleLike = movie => {
         // console.log("Clicked Like", movie);
         const data = [...this.state.data];
@@ -43,6 +47,7 @@ class Grid extends Component {
                         pageSize={this.state.pageSize}
                         onDelete={this.handleDelete}
                         onLike={this.handleLike}
+                        onPageChange={this.handlePageChange}
                     />
                 </div>
             </React.Fragment>
