@@ -10,6 +10,7 @@ class Grid extends Component {
     state = {
         count: 9,
         data: getMovies(),
+        pageSize: 4
     };
 
     handleLike = movie => {
@@ -39,6 +40,7 @@ class Grid extends Component {
                     <MovieInfo
                         count={this.state.count}
                         data={this.state.data}
+                        pageSize={this.state.pageSize}
                         onDelete={this.handleDelete}
                         onLike={this.handleLike}
                     />
