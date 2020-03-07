@@ -10,11 +10,13 @@ class Grid extends Component {
     state = {
         count: 9,
         data: getMovies(),
-        pageSize: 4
+        pageSize: 4,
+        currentPage: 1
     };
 
     handlePageChange = page => {
-        console.log(page);
+        // console.log(page);
+        this.setState({ currentPage: page });
     };
 
     handleLike = movie => {
@@ -31,20 +33,22 @@ class Grid extends Component {
             data: this.state.data.filter(movie => movie._id !== id),
             count: this.state.count - 1
         })
-        console.log(this.state.data)
+        // console.log(this.state.data)
     };
 
 
     render() {
+        const { count, data, pageSize, currentPage } = this.state;
         return (
             <React.Fragment>
                 <Counter formatCount={this.formatCount()} />
                 <div className={this.getDisplayClasses()}>
                     <Header headerItemsArr={["Title", "Genre", "Stock", "Rate"]} count={this.state.count} />
                     <MovieInfo
-                        count={this.state.count}
-                        data={this.state.data}
-                        pageSize={this.state.pageSize}
+                        count={count}
+                        data={data}
+                        pageSize={pageSize}
+                        currentPage={currentPage}
                         onDelete={this.handleDelete}
                         onLike={this.handleLike}
                         onPageChange={this.handlePageChange}
