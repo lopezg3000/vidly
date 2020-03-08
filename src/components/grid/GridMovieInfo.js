@@ -1,14 +1,14 @@
 import React from 'react';
 import "../../grid.css";
 import Like from "../common/Like"
-import Pagination from "../pagination/Pagination"
+import Pagination from "../common/Pagination"
 
 const MovieInfo = props => {
     // console.log(props);
-    const { data, onLike, onDelete, count, pageSize, onPageChange, currentPage } = props;
+    const { movies, onLike, onDelete, count, pageSize, onPageChange, currentPage } = props;
     return (
         <React.Fragment>
-            {data.map(movie => (
+            {movies.map(movie => (
                 <React.Fragment key={movie._id}>
                     <div className="movieInfo">
                         <h3>{movie.title}</h3>

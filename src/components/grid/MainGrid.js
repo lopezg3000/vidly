@@ -3,6 +3,7 @@ import Header from "./GridHeader";
 import MovieInfo from "./GridMovieInfo";
 import { getMovies } from "../../services/fakeMovieService";
 import Counter from "../MovieCounter";
+import { paginate } from "../../utils/paginate";
 import "../../grid.css";
 
 
@@ -38,7 +39,10 @@ class Grid extends Component {
 
 
     render() {
-        const { count, data, pageSize, currentPage } = this.state;
+        const { count, data: allMovies, pageSize, currentPage } = this.state;
+
+        const movies = paginate(allMovies, currentPage, pageSize);
+
         return (
             <React.Fragment>
                 <Counter formatCount={this.formatCount()} />
@@ -46,7 +50,7 @@ class Grid extends Component {
                     <Header headerItemsArr={["Title", "Genre", "Stock", "Rate"]} count={this.state.count} />
                     <MovieInfo
                         count={count}
-                        data={data}
+                        movies={movies}
                         pageSize={pageSize}
                         currentPage={currentPage}
                         onDelete={this.handleDelete}
