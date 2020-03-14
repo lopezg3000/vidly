@@ -1,17 +1,14 @@
-.container {
-    /* font-size: 40px; */
+/* .container {
     width: 100%;
-    /* background: LightGray; */
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: repeat(10, 100px);
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(6, 100px);
     align-items: center;
-    /* grid-gap: 5px; */
     padding-top: 20px;
 
-}
+} */
 
-.containerCounter {
+/* .containerCounter {
     max-width: 1140px;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -51,5 +48,5 @@
 .buttonContainer {
     border-bottom: 1px solid gray;
     padding: 0px 0 6px 0;
-}
+} */
 

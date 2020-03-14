@@ -10,6 +10,7 @@ const MovieInfo = props => {
         <React.Fragment>
             {movies.map(movie => (
                 <React.Fragment key={movie._id}>
+                    <div></div>
                     <div className="movieInfo">
                         <h3>{movie.title}</h3>
                     </div>
