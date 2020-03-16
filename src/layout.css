@@ -1,17 +1,17 @@
 
 body {
-    margin: 40px;
+    margin: 40px; /* gives margin to top*/
 }
 
 .container {
     display: grid;
-    column-gap: 10px;
-    row-gap: 10px;
-    grid-template-columns: repeat(8, [col] auto);
+    /* column-gap: 10px;
+    row-gap: 10px; */
+    grid-template-columns: repeat(9, [col] auto); 
     grid-template-rows: repeat(2, [row] auto);
     background-color: #fff;
     color:#444;
-    margin: auto;
+    margin: auto; /* centers main grid*/
 }
 
 .box {
@@ -32,43 +32,20 @@ body {
 }
 
 .header {
-    grid-column: col 3 / span 6;
+    grid-column: col 3 / span 7;
     grid-row: row;
 }
 
 .table {
-    grid-column: col 3 / span 6;
+    grid-column: col 3 / span 7;
     grid-row: auto;
     display: grid;
-    column-gap: 10px;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(4, 50px);
+    /* column-gap: 10px; */
+    grid-template-columns: 2fr repeat(5, 1fr);
+    grid-template-rows: repeat(5, 60px);
     margin-bottom: 0;
 }
 
-.a {
-    grid-column: 1;
-}
-
-.b {
-    grid-column: 2;
-}
-
-.c {
-    grid-column: 3;
-}
-
-.d {
-    grid-column: 4;
-}
-
-.e {
-    grid-column: 5;
-}
-
-.f {
-    grid-column: 6;
-}
 
 
 

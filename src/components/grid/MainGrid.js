@@ -1,81 +1,29 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from "./GridHeader";
 import MovieInfo from "./GridMovieInfo";
-import { getMovies } from "../../services/fakeMovieService";
-import Counter from "../MovieCounter";
-import { paginate } from "../../utils/paginate";
 import "../../grid.css";
 
+const Grid = props => {
+    const { count, movies, pageSize, currentPage, onDelete, onLike, onPageChange } = props;
 
-class Grid extends Component {
-    state = {
-        count: 9,
-        data: getMovies(),
-        pageSize: 4,
-        currentPage: 1
-    };
-
-    handlePageChange = page => {
-        // console.log(page);
-        this.setState({ currentPage: page });
-    };
-
-    handleLike = movie => {
-        // console.log("Clicked Like", movie);
-        const data = [...this.state.data];
-        const index = data.indexOf(movie);
-        data[index] = { ...movie };
-        data[index].liked = !data[index].liked;
-        this.setState({ data });
-    };
-
-    handleDelete = id => {
-        this.setState({
-            data: this.state.data.filter(movie => movie._id !== id),
-            count: this.state.count - 1
-        })
-        // console.log(this.state.data)
-    };
-
-
-    render() {
-        const { count, data: allMovies, pageSize, currentPage } = this.state;
-
-        const movies = paginate(allMovies, currentPage, pageSize);
-
-        return (
-            <React.Fragment>
-                <Counter formatCount={this.formatCount()} />
-                <div className={this.getDisplayClasses()}>
-                    <Header headerItemsArr={["Title", "Genre", "Stock", "Rate"]} count={this.state.count} />
-                    <MovieInfo
-                        count={count}
-                        movies={movies}
-                        pageSize={pageSize}
-                        currentPage={currentPage}
-                        onDelete={this.handleDelete}
-                        onLike={this.handleLike}
-                        onPageChange={this.handlePageChange}
-                    />
-                </div>
-            </React.Fragment>
-        );
-    }
-
-    getDisplayClasses() {
-        let classes = "";
-        classes += (this.state.count === 0) ? "containerNone" : "container";
-        return classes;
-
-    }
-
-    formatCount() {
-        const { count } = this.state;
-        return count === 0 ? "There are no movies in the database" : "Showing " + count + " movies in the database.";
-    }
+    return (
+        <React.Fragment>
+            <Header headerItemsArr={["Title", "Genre", "Stock", "Rate"]} count={count} />
+            <MovieInfo
+                count={count}
+                movies={movies}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onDelete={onDelete}
+                onLike={onLike}
+                onPageChange={onPageChange}
+            />
+        </React.Fragment>
+    );
 }
 
 export default Grid;
+
 
 
 // create 5 columns at the top: Title, genre, stock, rate, button 
