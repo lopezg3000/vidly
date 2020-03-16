@@ -25,7 +25,7 @@ const MovieInfo = props => {
                     <div className="movieInfo">
                         <h4><Like movie={movie} liked={movie.liked} onLike={onLike} /></h4>
                     </div>
-                    <div>
+                    <div className="buttonContainer">
                         <button type="button" className="btn btn-danger" onClick={() => onDelete(movie._id)} ><h5>Delete</h5></button>
                     </div>
                 </React.Fragment>

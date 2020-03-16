@@ -9,14 +9,18 @@ body {
     row-gap: 10px; */
     grid-template-columns: repeat(9, [col] auto); 
     grid-template-rows: repeat(2, [row] auto);
-    background-color: #fff;
-    color:#444;
+    /* background-color: #fff;
+    color:#444; */
     margin: auto; /* centers main grid*/
 }
 
+.containerNone {
+    display: none;
+}
+
 .box {
-    background-color: #444;
-    color: #fff;
+    /* background-color: #444;
+    color: #fff; */
     border-radius: 5px;
     font-size: 150%;
 }
@@ -42,8 +46,10 @@ body {
     display: grid;
     /* column-gap: 10px; */
     grid-template-columns: 2fr repeat(5, 1fr);
-    grid-template-rows: repeat(5, 60px);
-    margin-bottom: 0;
+    grid-template-rows: repeat(5, 100px);
+    /* margin-bottom: 0; */
+    align-items: center;
+    padding-top: 20px;
 }
 
 

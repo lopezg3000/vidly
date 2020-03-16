@@ -24,21 +24,17 @@
 }
 
 
-.columnHeader {
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
-    padding: 20px 0 20px 0;
-}
 
-.columnHeader h3{
-        font-weight: bold;
-}
-
+/*  */
 .columnEmptyDiv {
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
     padding: 40.5px;
 } 
+
+.columnHeader h3{
+    font-weight: bold;
+}
 
 .movieInfo {
     border-bottom: 1px solid gray;
@@ -47,6 +43,11 @@
 
 .buttonContainer {
     border-bottom: 1px solid gray;
-    padding: 0px 0 6px 0;
-} */
+    padding: 0px 0 11px 0;
+} 
 
+.columnHeader {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 20px 0 20px 0;
+}
