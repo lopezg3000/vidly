@@ -1,38 +1,10 @@
-/* .container {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: repeat(6, 100px);
-    align-items: center;
-    padding-top: 20px;
-
-} */
-
-/* .containerCounter {
-    max-width: 1140px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
-    justify-items: start;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 40px 15px 10px 15px;
-}
-
-.containerNone {
-    display: none;
-}
-
-
-
-/*  */
 .columnEmptyDiv {
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
-    padding: 40.5px;
+    padding: 37.6px;
 } 
 
-.columnHeader h3{
+.columnHeader h4{
     font-weight: bold;
 }
 

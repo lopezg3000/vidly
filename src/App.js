@@ -4,13 +4,16 @@ import { getMovies } from "./services/fakeMovieService";
 import MovieCounter from "./components/MovieCounter";
 import { paginate } from "./utils/paginate";
 import Grid from "./components/grid/MainGrid";
+import ListGroup from "./components/common/ListGroup";
+import { genres } from "./services/fakeGenreService"
 
 class App extends Component {
     state = {
         count: 9,
         data: getMovies(),
         pageSize: 4,
-        currentPage: 1
+        currentPage: 1,
+        genres: genres
     };
 
     handlePageChange = page => {
@@ -36,7 +39,7 @@ class App extends Component {
     };
 
     render() {
-        const { count, data: allMovies, pageSize, currentPage } = this.state;
+        const { count, data: allMovies, pageSize, genres, currentPage } = this.state;
 
         const movies = paginate(allMovies, currentPage, pageSize);
 
@@ -53,6 +56,9 @@ class App extends Component {
                         onLike={this.handleLike}
                         onPageChange={this.handlePageChange}
                     />
+                </div>
+                <div className="filter">
+                    <ListGroup genres={genres} />
                 </div>
             </div>
         );

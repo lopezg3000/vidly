@@ -5,9 +5,9 @@ body {
 
 .container {
     display: grid;
-    /* column-gap: 10px;
-    row-gap: 10px; */
-    grid-template-columns: repeat(9, [col] auto); 
+    column-gap: 50px;
+    /* row-gap: 10px; */
+    grid-template-columns: repeat(9, [col] 80px); 
     grid-template-rows: repeat(2, [row] auto);
     /* background-color: #fff;
     color:#444; */
@@ -33,6 +33,7 @@ body {
 .filter {
     grid-column: col / span 2;
     grid-row: row / span 2;
+    column-gap: 50px;
 }
 
 .header {
