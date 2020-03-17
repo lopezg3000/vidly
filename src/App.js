@@ -13,7 +13,8 @@ class App extends Component {
         data: getMovies(),
         pageSize: 4,
         currentPage: 1,
-        genres: genres
+        genres: genres,
+        currentGenre: "allGenres"
     };
 
     handlePageChange = page => {
@@ -38,8 +39,23 @@ class App extends Component {
         // console.log(this.state.data)
     };
 
+    handleReset = () => {
+        console.log("handleReset Clicked")
+        this.setState({
+            currentGenre: "allGenres",
+            data: getMovies()
+        });
+    };
+
+    handleGenreChange = (genre, id) => {
+        console.log(genre, " Clicked")
+        this.setState({
+            currentGenre: genre
+        });
+    };
+
     render() {
-        const { count, data: allMovies, pageSize, genres, currentPage } = this.state;
+        const { count, data: allMovies, pageSize, currentPage, genres, currentGenre } = this.state;
 
         const movies = paginate(allMovies, currentPage, pageSize);
 
@@ -58,7 +74,12 @@ class App extends Component {
                     />
                 </div>
                 <div className="filter">
-                    <ListGroup genres={genres} />
+                    <ListGroup
+                        genres={genres}
+                        currentGenre={currentGenre}
+                        onReset={this.handleReset}
+                        onGenreChange={this.handleGenreChange}
+                    />
                 </div>
             </div>
         );
