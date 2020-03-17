@@ -9,7 +9,6 @@ import { genres } from "./services/fakeGenreService"
 
 class App extends Component {
     state = {
-        count: 9,
         data: getMovies(),
         pageSize: 4,
         currentPage: 1,
@@ -34,8 +33,7 @@ class App extends Component {
 
     handleDelete = id => {
         this.setState({
-            data: this.state.data.filter(movie => movie._id !== id),
-            count: this.state.count - 1
+            data: this.state.data.filter(movie => movie._id !== id)
         })
         // console.log(this.state.data)
     };
@@ -60,9 +58,12 @@ class App extends Component {
     };
 
     render() {
-        const { count, data: allMovies, pageSize, currentPage, genres, currentGenre } = this.state;
+        const { data: allMovies, pageSize, currentPage, genres, currentGenre } = this.state;
 
         const movies = paginate(allMovies, currentPage, pageSize);
+
+        const count = this.state.data.length;
+        console.log(count)
 
         return (
             <div className="container">
@@ -91,13 +92,14 @@ class App extends Component {
     }
 
     formatCount() {
-        const { count } = this.state;
+        const count = this.state.data.length;
         return count === 0 ? "There are no movies in the database" : "Showing " + count + " movies in the database.";
     }
 
     getDisplayClasses() {
         let classes = "";
-        classes += (this.state.count === 0) ? "containerNone" : "table";
+        const count = this.state.data.length;
+        classes += (count === 0) ? "containerNone" : "table";
         return classes;
 
     };
