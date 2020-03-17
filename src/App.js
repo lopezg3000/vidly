@@ -5,16 +5,20 @@ import MovieCounter from "./components/MovieCounter";
 import { paginate } from "./utils/paginate";
 import Grid from "./components/grid/MainGrid";
 import ListGroup from "./components/common/ListGroup";
-import { genres } from "./services/fakeGenreService"
+import { getGenres } from "./services/fakeGenreService"
 
 class App extends Component {
     state = {
-        data: getMovies(),
+        data: [],
         pageSize: 4,
         currentPage: 1,
         filtered: [],
-        genres: genres,
+        genres: [],
         currentGenre: "allGenres"
+    };
+
+    componentDidMount() {
+        this.setState({ data: getMovies(), genres: getGenres() })
     };
 
     handlePageChange = page => {
