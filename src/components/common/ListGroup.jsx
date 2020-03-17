@@ -18,7 +18,7 @@ const ListGroup = props => {
                 <li
                     key={genre._id}
                     className={genre.name === currentGenre ? "list-group-item active" : "list-group-item"}
-                    onClick={() => onGenreChange(genre.name, genre.id)}
+                    onClick={() => onGenreChange(genre.name, genre._id)}
                     style={{ cursor: "pointer" }}
                 >
                     <h4>{genre.name}</h4></li>

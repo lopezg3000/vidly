@@ -13,6 +13,7 @@ class App extends Component {
         data: getMovies(),
         pageSize: 4,
         currentPage: 1,
+        filtered: [],
         genres: genres,
         currentGenre: "allGenres"
     };
@@ -41,16 +42,20 @@ class App extends Component {
 
     handleReset = () => {
         console.log("handleReset Clicked")
+        const data = getMovies();
         this.setState({
             currentGenre: "allGenres",
-            data: getMovies()
+            data
         });
     };
 
     handleGenreChange = (genre, id) => {
-        console.log(genre, " Clicked")
+        console.log(id, " Clicked")
+        const data = getMovies();
+        const filtered = data.filter(data => data.genre._id === id);
         this.setState({
-            currentGenre: genre
+            currentGenre: genre,
+            data: filtered
         });
     };
 
