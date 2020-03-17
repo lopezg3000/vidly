@@ -51,12 +51,12 @@ class App extends Component {
         });
     };
 
-    handleGenreChange = (genre, id) => {
-        console.log(id, " Clicked")
+    handleGenreChange = (genre) => {
+        console.log(genre, " Clicked")
         const data = getMovies();
-        const filtered = data.filter(data => data.genre._id === id);
+        const filtered = data.filter(data => data.genre._id === genre._id);
         this.setState({
-            currentGenre: genre,
+            currentGenre: genre.name,
             data: filtered
         });
     };
