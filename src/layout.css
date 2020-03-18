@@ -1,17 +1,14 @@
 
-body {
-    margin: 40px; /* gives margin to top*/
+/* body {
+    margin: 40px; 
 }
 
 .container {
     display: grid;
     column-gap: 50px;
-    /* row-gap: 10px; */
     grid-template-columns: repeat(9, [col] 80px); 
     grid-template-rows: repeat(2, [row] auto);
-    /* background-color: #fff;
-    color:#444; */
-    margin: auto; /* centers main grid*/
+    margin: auto;
 }
 
 .containerNone {
@@ -19,8 +16,6 @@ body {
 }
 
 .box {
-    /* background-color: #444;
-    color: #fff; */
     border-radius: 5px;
     font-size: 150%;
 }
@@ -45,10 +40,8 @@ body {
     grid-column: col 3 / span 7;
     grid-row: auto;
     display: grid;
-    /* column-gap: 10px; */
     grid-template-columns: 2fr repeat(5, 1fr);
     grid-template-rows: repeat(5, 100px);
-    /* margin-bottom: 0; */
     align-items: center;
     padding-top: 20px;
 }
@@ -56,4 +49,4 @@ body {
 
 
 
-
+ */

@@ -4,11 +4,10 @@ import MovieInfo from "./GridMovieInfo";
 import "../../grid.css";
 
 const Grid = props => {
-    const { count, movies, pageSize, currentPage, onDelete, onLike, onPageChange } = props;
-
+    const { count, movies, pageSize, currentPage, onDelete, onLike, onPageChange, onSort } = props;
     return (
         <React.Fragment>
-            <Header headerItemsArr={["Title", "Genre", "Stock", "Rate"]} count={count} />
+            <Header headerItemsArr={["Title", "Genre", "Stock", "Rate"]} onSort={onSort} count={count} />
             <MovieInfo
                 count={count}
                 movies={movies}
