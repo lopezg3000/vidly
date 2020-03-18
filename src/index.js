@@ -5,8 +5,6 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
-import MainGrid from "./components/grid/MainGrid"
-import Layout from "./components/common/Layout";
 import App from "./App"
 
 ReactDOM.render(<App />, document.getElementById('root'));
