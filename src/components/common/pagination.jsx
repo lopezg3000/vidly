@@ -8,7 +8,7 @@ const Pagination = props => {
 
     const pagesCount = Math.ceil(itemsCount / pageSize); //Math.ceil converts number calculated to an integer greater or equal to floating point number
     // console.log(pagesCount);
-    if (pagesCount === 1) return null;
+    if (pagesCount === 1 && currentPage === 1) return null;
     const pages = _.range(1, pagesCount + 1); //[1, ...pagesCount].map() 
     return (
         <nav>
