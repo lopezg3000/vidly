@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import MovieTable from "./moviesTable"
+import MovieTable from './moviesTable'
 import { getMovies } from '../services/fakeMovieService';
 import { getGenres } from '../services/fakeGenreService';
 import ListGroup from './common/listGroup';
 import Pagination from './common/pagination';
-import { paginate } from "../utils/paginate";
+import { paginate } from '../utils/paginate';
+import _ from 'lodash';
 
 
 class Movies extends Component {
@@ -12,7 +13,8 @@ class Movies extends Component {
         movies: [],
         genres: [],
         currentPage: 1,
-        pageSize: 4
+        pageSize: 4,
+        sortColumn: { path: 'title', order: 'asc' }
     };
 
     componentDidMount() {
@@ -49,16 +51,25 @@ class Movies extends Component {
 
     handleSort = path => {
         console.log(path);
+        const sortColumn = { ...this.state.sortColumn };
+        if (sortColumn.path === path)
+            sortColumn.order = sortColumn.order === 'asc' ? 'desc' : 'asc';
+        else {
+            sortColumn.path = path;
+            sortColumn.order = 'asc';
+        }
+        this.setState({ sortColumn })
     };
 
     render() {
         const { length: count } = this.state.movies;
-        const { pageSize, currentPage, selectedGenre, movies: allMovies } = this.state;
+        const { pageSize, currentPage, sortColumn, selectedGenre, movies: allMovies } = this.state;
 
         if (count === 0) return <p>There are no movies in this database.</p>;
 
         const filtered = selectedGenre && selectedGenre._id ? allMovies.filter(m => m.genre._id === selectedGenre._id) : allMovies;
-        const movies = paginate(filtered, currentPage, pageSize);
+        const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
+        const movies = paginate(sorted, currentPage, pageSize);
 
         return (
             <div className="row">
