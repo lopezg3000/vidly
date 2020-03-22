@@ -8,20 +8,32 @@ class TableBody extends Component {
         return _.get(item, column.path);
     };
 
+    createKey = (item, column, valueProperty) => {
+        return item[valueProperty] + (column.path || column.key);
+    };
+
     render() {
-        const { data, columns } = this.props;
+        const { data, columns, valueProperty } = this.props;
         // console.log(data, columns);
         return (
 
             <tbody>
                 {data.map(item => (
-                    <tr>
-                        {columns.map(column => <td>{this.renderCell(item, column)}</td>)}
+                    <tr key={item[valueProperty]}>
+                        {columns.map(column => (
+                            <td key={this.createKey(item, column)}>
+                                {this.renderCell(item, column, valueProperty)}
+                            </td>
+                        ))}
                     </tr>
                 ))}
             </tbody>
         );
     }
-}
+};
+
+TableBody.defaultProps = {
+    valueProperty: '_id'
+};
 
 export default TableBody;
