@@ -29,7 +29,7 @@ class LoginForm extends Component {
 
         //Call the Server
 
-        console.log('Submitted');
+        console.log('Submitted Form');
     };
 
     handleChange = ({ currentTarget: input }) => {
