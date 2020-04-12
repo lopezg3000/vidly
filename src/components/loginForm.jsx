@@ -33,6 +33,9 @@ class LoginForm extends Component {
     };
 
     handleChange = ({ currentTarget: input }) => {
+        const errors = { ...this.state.errors };
+        const errorMessage = this.validateProperty(input);
+
         const account = { ...this.state.account };
         account[input.name] = input.value;
         this.setState({ account });
