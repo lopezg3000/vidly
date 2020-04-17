@@ -1,13 +1,14 @@
 
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from "react-router-dom";
-import NavBar from "./components/common/navbar";
-import Movies from "./components/movies";
-import Customers from "./components/customers";
-import Rentals from "./components/rentals";
-import MovieForm from "./components/movieForm";
-import NotFound from "./components/notFound";
-import LoginForm from "./components/loginForm";
+import { Route, Switch, Redirect } from 'react-router-dom';
+import NavBar from './components/common/navbar';
+import Movies from './components/movies';
+import Customers from './components/customers';
+import Rentals from './components/rentals';
+import MovieForm from './components/movieForm';
+import NotFound from './components/notFound';
+import RegisterForm from './components/registerForm'
+import LoginForm from './components/loginForm';
 import './App.css';
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
                 <NavBar />
                 <main className="container">
                     <Switch>
+                        <Route path="/register" component={RegisterForm} />
                         <Route path="/login" component={LoginForm} />
                         <Route path="/movies/:id" component={MovieForm} />
                         <Route path="/movies" component={Movies} />
