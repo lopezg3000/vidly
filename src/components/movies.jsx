@@ -5,7 +5,7 @@ import { getGenres } from '../services/fakeGenreService';
 import ListGroup from './common/listGroup';
 import Pagination from './common/pagination';
 import { paginate } from '../utils/paginate';
-import NavButton from './common/navButton';
+import NewMovieButton from './newMovieButton';
 import _ from 'lodash';
 
 
@@ -22,7 +22,7 @@ class Movies extends Component {
         const genres = [{ _id: "", name: 'All Genres' }, ...getGenres()];
 
         this.setState({ movies: getMovies(), genres });
-        console.log(genres)
+        // console.log(genres)
     };
 
     handleDelete = movie => {
@@ -88,7 +88,7 @@ class Movies extends Component {
                     />
                 </div>
                 <div className="col">
-                    <NavButton to='/movies/new' label='New Movie' />
+                    <NewMovieButton label="New Movie" />
                     <p>Showing {totalCount} movies in this database.</p>
                     <MovieTable
                         movies={movies}
