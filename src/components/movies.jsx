@@ -5,6 +5,7 @@ import { getGenres } from '../services/fakeGenreService';
 import ListGroup from './common/listGroup';
 import Pagination from './common/pagination';
 import { paginate } from '../utils/paginate';
+import Button from './common/button';
 import _ from 'lodash';
 
 
@@ -87,6 +88,7 @@ class Movies extends Component {
                     />
                 </div>
                 <div className="col">
+                    <Button label="New Movie" />
                     <p>Showing {totalCount} movies in this database.</p>
                     <MovieTable
                         movies={movies}
