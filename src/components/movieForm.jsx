@@ -28,6 +28,14 @@ class MovieForm extends Form {
                 <h1>Movie Form {id !== "new" ? id : null}</h1>
                 <form onSubmit={this.handlSubmit}>
                     {this.renderInput('title', 'Title')}
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Genre</label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                            <option>Action</option>
+                            <option>Comedy</option>
+                            <option>Thriller</option>
+                        </select>
+                    </div>
                 </form>
                 <button type="button" className="btn btn-primary" onClick={() => history.push("/movies")}>Save</button>
             </div>
