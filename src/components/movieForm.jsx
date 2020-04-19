@@ -4,7 +4,7 @@ import Form from './common/form';
 
 class MovieForm extends Form {
     state = {
-        data: { title: '', genre: '' },
+        data: { title: '', genre: '', numberInStock: '', },
         errors: {}
     }
 
@@ -14,7 +14,18 @@ class MovieForm extends Form {
             .label('Title'),
         genre: Joi.string()
             .required()
-            .label('Genre')
+            .label('Genre'),
+        numberInStock: Joi.number()
+            .required()
+            .integer()
+            .min(0)
+            .max(100)
+            .label('Number in Stock'),
+        dailyRentalRate: Joi.number()
+            .required()
+            .min(0)
+            .max(10)
+            .label('Daily Rental Rate'),
     }
 
     options = [
@@ -39,6 +50,8 @@ class MovieForm extends Form {
                 <form onSubmit={this.handlSubmit}>
                     {this.renderInput('title', 'Title')}
                     {this.renderSelectTag('genre', 'Genre')}
+                    {this.renderInput('numberInStock', 'Number in Stock', 'number')}
+                    {this.renderInput('dailyRentalRate', 'Rate', 'number')}
                     {this.renderButton('Save')}
                 </form>
                 <button type="button" className="btn btn-primary" onClick={() => history.push("/movies")}>Save</button>
