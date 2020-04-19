@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
-import Input from "./input";
+import Input from './input';
+import SelectTag from './selectTag';
 
 class Form extends Component {
     state = {
@@ -35,14 +36,14 @@ class Form extends Component {
         this.doSubmit();
     };
 
-    handleChange = ({ currentTarget: input }) => {
+    handleChange = ({ currentTarget: target }) => {
         const errors = { ...this.state.errors };
-        const errorMessage = this.validateProperty(input);
-        if (errorMessage) errors[input.name] = errorMessage;
-        else delete errors[input.name];
+        const errorMessage = this.validateProperty(target);
+        if (errorMessage) errors[target.name] = errorMessage;
+        else delete errors[target.name];
 
         const data = { ...this.state.data };
-        data[input.name] = input.value;
+        data[target.name] = target.value;
         this.setState({ data, errors });
     }
 
@@ -63,6 +64,20 @@ class Form extends Component {
                 name={name}
                 value={data[name]}
                 label={label}
+                onChange={this.handleChange}
+                error={errors[name]}
+            />
+        );
+    }
+
+    renderSelectTag(name, label) {
+        const { data, errors } = this.state;
+        return (
+            <SelectTag
+                name={name}
+                value={data[name]}
+                label={label}
+                options={this.options}
                 onChange={this.handleChange}
                 error={errors[name]}
             />
