@@ -4,7 +4,11 @@ import { withRouter } from 'react-router';
 class NewMovieButton extends Component {
 
     handleNewMovieForm = () => {
-        this.props.history.push('/movies/new');
+        this.props.history.push({
+            pathname: '/movies/new',
+            data: this.props.data,
+            genres: this.props.genres
+        });
     };
     render() {
         const { label } = this.props;

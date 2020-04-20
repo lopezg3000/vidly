@@ -19,14 +19,16 @@ class Movies extends Component {
     };
 
     componentDidMount() {
+        const newMovie = this.props.location.newMovie;
+        // const movies = getMovies();
         const genres = [{ _id: "", name: 'All Genres' }, ...getGenres()];
-
-        this.setState({ movies: getMovies(), genres });
+        const movies = [newMovie, ...getMovies()];
+        this.setState({ genres, movies });
         // console.log(genres)
     };
 
     handleDelete = movie => {
-        // console.log(movie.title, " Deleted");
+        console.log(movie, " Deleted");
         const movies = this.state.movies.filter(m => m._id !== movie._id);
         this.setState({ movies });
     };
@@ -88,7 +90,7 @@ class Movies extends Component {
                     />
                 </div>
                 <div className="col">
-                    <NewMovieButton label="New Movie" />
+                    <NewMovieButton label="New Movie" data={movies} genres={this.state.genres} />
                     <p>Showing {totalCount} movies in this database.</p>
                     <MovieTable
                         movies={movies}

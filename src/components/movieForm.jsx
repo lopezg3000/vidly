@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
+import _ from 'lodash';
 
 class MovieForm extends Form {
     state = {
-        data: { title: '', genre: '', numberInStock: '', },
+        data: { title: '', genre: '', numberInStock: '', dailyRentalRate: '' },
         errors: {}
     }
 
@@ -30,14 +31,23 @@ class MovieForm extends Form {
 
     options = [
         { label: '', value: '' },
-        { label: 'Action', value: 'action' },
-        { label: 'Comedy', value: 'comedy' },
-        { label: 'Thriller', value: 'thriller' }
+        { label: 'Action', value: 'Action' },
+        { label: 'Comedy', value: 'Comedy' },
+        { label: 'Thriller', value: 'Thriller' }
     ]
 
     doSubmit = () => {
+        const genres = this.props.location.genres;
+        const data = this.state.data;
+        const genre = _.find(genres, { name: data.genre });
+        const uniqueId = new Date().getTime().toString();
+        const newMovie = { _id: uniqueId, ...data, genre: genre, }
         //Call to Server
-        console.log('Movie Saved');
+        this.props.history.push({
+            pathname: '/movies',
+            newMovie: newMovie
+        });
+        console.log('Movie Saved', newMovie);
     }
 
 
@@ -47,14 +57,13 @@ class MovieForm extends Form {
         return (
             <div>
                 <h1>Movie Form {id !== "new" ? id : null}</h1>
-                <form onSubmit={this.handlSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     {this.renderInput('title', 'Title')}
                     {this.renderSelectTag('genre', 'Genre')}
                     {this.renderInput('numberInStock', 'Number in Stock', 'number')}
                     {this.renderInput('dailyRentalRate', 'Rate', 'number')}
                     {this.renderButton('Save')}
                 </form>
-                <button type="button" className="btn btn-primary" onClick={() => history.push("/movies")}>Save</button>
             </div>
         );
     }
