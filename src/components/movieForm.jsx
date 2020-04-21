@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import Joi from 'joi-browser';
 import Form from './common/form';
 import _ from 'lodash';
@@ -6,7 +7,8 @@ import _ from 'lodash';
 class MovieForm extends Form {
     state = {
         data: { title: '', genre: '', numberInStock: '', dailyRentalRate: '' },
-        errors: {}
+        errors: {},
+        formSubmitted: false
     }
 
     schema = {
@@ -43,17 +45,18 @@ class MovieForm extends Form {
         const uniqueId = new Date().getTime().toString();
         const newMovie = { _id: uniqueId, ...data, genre: genre, }
         //Call to Server
-        this.props.history.push({
-            pathname: '/movies',
-            newMovie: newMovie
-        });
+        this.setState({ data: newMovie, formSubmitted: true })
         console.log('Movie Saved', newMovie);
     }
 
 
     render() {
-        const { match, history } = this.props;
+        const { match } = this.props;
         const { id } = match.params;
+
+        if (this.state.formSubmitted) {
+            return <Route to={{ pathname: "/movies", newMovie: this.state.data }} />
+        }
         return (
             <div>
                 <h1>Movie Form {id !== "new" ? id : null}</h1>
@@ -64,7 +67,7 @@ class MovieForm extends Form {
                     {this.renderInput('dailyRentalRate', 'Rate', 'number')}
                     {this.renderButton('Save')}
                 </form>
-            </div>
+            </div >
         );
     }
 }

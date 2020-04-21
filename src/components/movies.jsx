@@ -19,10 +19,8 @@ class Movies extends Component {
     };
 
     componentDidMount() {
-        const newMovie = this.props.location.newMovie;
-        // const movies = getMovies();
+        const movies = getMovies();
         const genres = [{ _id: "", name: 'All Genres' }, ...getGenres()];
-        const movies = [newMovie, ...getMovies()];
         this.setState({ genres, movies });
         // console.log(genres)
     };
@@ -55,6 +53,12 @@ class Movies extends Component {
 
     handleSort = sortColumn => {
         this.setState({ sortColumn })
+    };
+
+    handleSaveMovie = newMovie => {
+        const movie = newMovie;
+        const movies = [movie, ...this.state.movies]
+        this.setState({ movies })
     };
 
     getPageData = props => {
@@ -90,7 +94,12 @@ class Movies extends Component {
                     />
                 </div>
                 <div className="col">
-                    <NewMovieButton label="New Movie" data={movies} genres={this.state.genres} />
+                    <NewMovieButton
+                        label="New Movie"
+                        data={movies}
+                        genres={this.state.genres}
+                        onSaveMovie={this.handleSaveMovie}
+                    />
                     <p>Showing {totalCount} movies in this database.</p>
                     <MovieTable
                         movies={movies}
