@@ -5,7 +5,7 @@ import { getGenres } from '../services/fakeGenreService';
 import ListGroup from './common/listGroup';
 import Pagination from './common/pagination';
 import { paginate } from '../utils/paginate';
-import NewMovieButton from './newMovieButton';
+import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
 
@@ -19,8 +19,8 @@ class Movies extends Component {
     };
 
     componentDidMount() {
-        const movies = getMovies();
         const genres = [{ _id: "", name: 'All Genres' }, ...getGenres()];
+        const movies = getMovies();
         this.setState({ genres, movies });
         // console.log(genres)
     };
@@ -94,12 +94,13 @@ class Movies extends Component {
                     />
                 </div>
                 <div className="col">
-                    <NewMovieButton
-                        label="New Movie"
-                        data={movies}
-                        genres={this.state.genres}
-                        onSaveMovie={this.handleSaveMovie}
-                    />
+                    <Link
+                        to='/movies/new'
+                        className='btn btn-primary'
+                        style={{ marginBottom: 20 }}
+                    >
+                        New Movie
+                    </Link>
                     <p>Showing {totalCount} movies in this database.</p>
                     <MovieTable
                         movies={movies}

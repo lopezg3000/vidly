@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import Joi from 'joi-browser';
 import Form from './common/form';
 import _ from 'lodash';
@@ -10,6 +10,9 @@ class MovieForm extends Form {
         errors: {},
         formSubmitted: false
     }
+
+    componentDidMount() {
+    };
 
     schema = {
         title: Joi.string()
@@ -39,7 +42,7 @@ class MovieForm extends Form {
     ]
 
     doSubmit = () => {
-        const genres = this.props.location.genres;
+        const genres = this.props.location.state.genres;
         const data = this.state.data;
         const genre = _.find(genres, { name: data.genre });
         const uniqueId = new Date().getTime().toString();
@@ -55,7 +58,7 @@ class MovieForm extends Form {
         const { id } = match.params;
 
         if (this.state.formSubmitted) {
-            return <Route to={{ pathname: "/movies", newMovie: this.state.data }} />
+            return <Redirect to={{ pathname: "/movies", state: this.state.data }} />
         }
         return (
             <div>
@@ -72,4 +75,4 @@ class MovieForm extends Form {
     }
 }
 
-export default MovieForm;
+export default withRouter(MovieForm);
