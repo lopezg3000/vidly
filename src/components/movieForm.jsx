@@ -21,10 +21,11 @@ class MovieForm extends Form {
     };
 
     schema = {
+        _id: Joi.string(), //not required because when creating a new movie there is no id property.
         title: Joi.string()
             .required()
             .label('Title'),
-        genre: Joi.string()
+        genreId: Joi.string()
             .required()
             .label('Genre'),
         numberInStock: Joi.number()
