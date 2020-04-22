@@ -1,14 +1,20 @@
-import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import React from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
+import { getMovie, saveMovie } from '../services/fakeMovieService';
+import { getGenres } from "../services/fakeGenreService";
 import _ from 'lodash';
 
 class MovieForm extends Form {
     state = {
-        data: { title: '', genre: '', numberInStock: '', dailyRentalRate: '' },
-        errors: {},
-        formSubmitted: false
+        data: {
+            title: '',
+            genreId: '', //interested in genre Id, when genre is selected in form it is the id that will be used to identify name;
+            numberInStock: '',
+            dailyRentalRate: ''
+        },
+        genres: [], //Will Change once componentDidMount is used to get genres from imaginary server
+        errors: {}
     }
 
     componentDidMount() {
