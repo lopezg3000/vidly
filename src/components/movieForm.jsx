@@ -4,6 +4,7 @@ import Form from './common/form';
 import { getMovie, saveMovie } from '../services/fakeMovieService';
 import { getGenres } from "../services/fakeGenreService";
 import _ from 'lodash';
+import { moveEmitHelpers } from 'typescript';
 
 class MovieForm extends Form {
     state = {
@@ -59,6 +60,16 @@ class MovieForm extends Form {
         //Each page needs a piece of that data. it is also possible that what should be displayed on the page is a little different from the structure of the data.
         //mapToViewModel method created and used to get a movie object that is recieved from the server and maps it to a different kind of movie object that
         //can be used on this form. movie object returned is referred to as a view model, a model with a view. 
+    };
+
+    mapToViewModel(movie) {
+        return {
+            _id: movie.id,
+            title: movie.title,
+            genreId: movie.genre._id,
+            numberInStock: movie.numberInStock,
+            dailyRentalRate: movie.dailyRentalRate
+        }
     };
 
     options = [
