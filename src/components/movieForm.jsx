@@ -4,7 +4,6 @@ import Form from './common/form';
 import { getMovie, saveMovie } from '../services/fakeMovieService';
 import { getGenres } from "../services/fakeGenreService";
 import _ from 'lodash';
-import { moveEmitHelpers } from 'typescript';
 
 class MovieForm extends Form {
     state = {
@@ -17,9 +16,6 @@ class MovieForm extends Form {
         genres: [], //Will Change once componentDidMount is used to get genres from imaginary server.
         errors: {}
     }
-
-    componentDidMount() {
-    };
 
     schema = {
         _id: Joi.string(), //not required because when creating a new movie there is no id property.
@@ -80,32 +76,23 @@ class MovieForm extends Form {
     ]
 
     doSubmit = () => {
-        const genres = this.props.location.state.genres;
-        const data = this.state.data;
-        const genre = _.find(genres, { name: data.genre });
-        const uniqueId = new Date().getTime().toString();
-        const newMovie = { _id: uniqueId, ...data, genre: genre, }
-        //Call to Server
-        this.setState({ data: newMovie, formSubmitted: true })
-        console.log('Movie Saved', newMovie);
+        saveMovie(this.state.data);
+
+        this.props.history.push('/movies');
     }
 
 
     render() {
         const { match } = this.props;
         const { id } = match.params;
-
-        if (this.state.formSubmitted) {
-            return <Redirect to={{ pathname: "/movies", state: this.state.data }} />
-        }
         return (
             <div>
                 <h1>Movie Form {id !== "new" ? id : null}</h1>
                 <form onSubmit={this.handleSubmit}>
                     {this.renderInput('title', 'Title')}
-                    {this.renderSelectTag('genre', 'Genre')}
+                    {this.renderSelect('genre', 'Genre', this.state.genres)}
                     {this.renderInput('numberInStock', 'Number in Stock', 'number')}
-                    {this.renderInput('dailyRentalRate', 'Rate', 'number')}
+                    {this.renderInput('dailyRentalRate', 'Rate')}
                     {this.renderButton('Save')}
                 </form>
             </div >
@@ -113,4 +100,4 @@ class MovieForm extends Form {
     }
 }
 
-export default withRouter(MovieForm);
+export default MovieForm;

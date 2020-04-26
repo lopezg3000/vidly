@@ -70,7 +70,7 @@ class Form extends Component {
         );
     }
 
-    renderSelectTag(name, label) {
+    renderSelect(name, label) {
         const { data, errors } = this.state;
         return (
             <SelectTag
