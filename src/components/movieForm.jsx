@@ -68,13 +68,6 @@ class MovieForm extends Form {
         }
     };
 
-    options = [
-        { label: '', value: '' },
-        { label: 'Action', value: 'Action' },
-        { label: 'Comedy', value: 'Comedy' },
-        { label: 'Thriller', value: 'Thriller' }
-    ]
-
     doSubmit = () => {
         saveMovie(this.state.data);
 
