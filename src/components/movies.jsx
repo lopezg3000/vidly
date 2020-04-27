@@ -4,6 +4,7 @@ import { getMovies } from '../services/fakeMovieService';
 import { getGenres } from '../services/fakeGenreService';
 import ListGroup from './common/listGroup';
 import Pagination from './common/pagination';
+import SearchBar from './common/searchBar';
 import { paginate } from '../utils/paginate';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
@@ -102,6 +103,7 @@ class Movies extends Component {
                         New Movie
                     </Link>
                     <p>Showing {totalCount} movies in this database.</p>
+                    <SearchBar />
                     <MovieTable
                         movies={movies}
                         sortColumn={sortColumn}
