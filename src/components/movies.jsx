@@ -50,7 +50,7 @@ class Movies extends Component {
 
     handleGenreSelect = genre => {
         // console.log(genre);
-        this.setState({ selectedGenre: genre, currentPage: 1 });
+        this.setState({ selectedGenre: genre, currentPage: 1, search: '' });
     };
 
     handleSort = sortColumn => {
@@ -65,16 +65,21 @@ class Movies extends Component {
 
     handleSearch = ({ currentTarget: searchBar }) => {
         const search = searchBar.value;
-        this.setState({ search });
+        this.setState({ search, selectedGenre: '', currentPage: 1 });
     };
 
     getPageData = props => {
-        const { pageSize, currentPage, sortColumn, selectedGenre, movies: allMovies } = this.state;
+        const { pageSize, currentPage, sortColumn, selectedGenre, movies: allMovies, search } = this.state;
 
         const filtered =
             selectedGenre && selectedGenre._id
                 ? allMovies.filter(m => m.genre._id === selectedGenre._id)
-                : allMovies;
+                : allMovies.filter(m => {
+                    if (m.title.toLowerCase().includes(search.toLowerCase()))
+                        return m;
+                    else if (search === '')
+                        return allMovies;
+                });
 
         const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
