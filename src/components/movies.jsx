@@ -63,8 +63,9 @@ class Movies extends Component {
         this.setState({ movies })
     };
 
-    handleSearch = e => {
-
+    handleSearch = ({ currentTarget: searchBar }) => {
+        const search = searchBar.value;
+        this.setState({ search });
     };
 
     getPageData = props => {
