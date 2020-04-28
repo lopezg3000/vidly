@@ -12,6 +12,7 @@ import _ from 'lodash';
 
 class Movies extends Component {
     state = {
+        search: '',
         movies: [],
         genres: [],
         currentPage: 1,
@@ -62,6 +63,10 @@ class Movies extends Component {
         this.setState({ movies })
     };
 
+    handleSearch = e => {
+
+    };
+
     getPageData = props => {
         const { pageSize, currentPage, sortColumn, selectedGenre, movies: allMovies } = this.state;
 
@@ -103,7 +108,7 @@ class Movies extends Component {
                         New Movie
                     </Link>
                     <p>Showing {totalCount} movies in this database.</p>
-                    <SearchBar />
+                    <SearchBar value={this.state.search} onChange={this.handleSearch} />
                     <MovieTable
                         movies={movies}
                         sortColumn={sortColumn}
