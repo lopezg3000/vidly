@@ -9,6 +9,7 @@ import { paginate } from '../utils/paginate';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
+//MongoDB installed
 
 class Movies extends Component {
     state = {
