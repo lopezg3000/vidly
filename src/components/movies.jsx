@@ -9,7 +9,7 @@ import { paginate } from '../utils/paginate';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
-//MongoDB installed
+//Node Backend Set up, but need to create repo on github
 
 class Movies extends Component {
     state = {
