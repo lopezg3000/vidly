@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MovieTable from './moviesTable'
-import { getMovies } from '../services/fakeMovieService';
-import { getGenres } from '../services/fakeGenreService';
+import { getMovies } from '../services/movieService';
+import { getGenres } from '../services/genreService';
 import ListGroup from './common/listGroup';
 import Pagination from './common/pagination';
 import SearchBox from './common/searchBox';
@@ -23,9 +23,11 @@ class Movies extends Component {
         sortColumn: { path: 'title', order: 'asc' }
     };
 
-    componentDidMount() {
-        const genres = [{ _id: "", name: 'All Genres' }, ...getGenres()];
-        const movies = getMovies();
+    async componentDidMount() {
+        const { data } = await getGenres();
+        console.log(data);
+        const genres = [{ _id: "", name: 'All Genres' }, ...data];
+        const { data: movies } = await getMovies();
         this.setState({ genres, movies });
         // console.log(genres)
     };
@@ -52,7 +54,7 @@ class Movies extends Component {
     };
 
     handleGenreSelect = genre => {
-        // console.log(genre);
+        console.log(genre);
         this.setState({ selectedGenre: genre, searchQuery: '', currentPage: 1 });
     };
 
