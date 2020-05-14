@@ -3,6 +3,7 @@ import MovieTable from './moviesTable'
 import { getMovies } from '../services/movieService';
 import { getGenres } from '../services/genreService';
 import http from '../services/httpService';
+import { toast } from 'react-toastify'
 import config from '../config.json';
 import ListGroup from './common/listGroup';
 import Pagination from './common/pagination';
@@ -41,10 +42,10 @@ class Movies extends Component {
         this.setState({ movies });
 
         try {
-            await http.delete(config.moviesEndpoint + '/0000' + movie._id);
+            await http.delete(config.moviesEndpoint + '/' + movie._id);
         } catch (ex) {
             if (ex.response && ex.response.status === 404)
-                alert('This movie has already been deleted!');
+                toast.error('This movie has already been deleted!');
             this.setState({ movies: originalMovies });
         }
     };
