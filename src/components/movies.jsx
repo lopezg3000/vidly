@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import MovieTable from './moviesTable'
 import { getMovies } from '../services/movieService';
 import { getGenres } from '../services/genreService';
+import http from '../services/httpService';
+import config from '../config.json';
 import ListGroup from './common/listGroup';
 import Pagination from './common/pagination';
 import SearchBox from './common/searchBox';
@@ -31,10 +33,20 @@ class Movies extends Component {
         // console.log(genres)
     };
 
-    handleDelete = movie => {
-        console.log(movie, " Deleted");
+    handleDelete = async movie => {
+        // console.log(movie, " Deleted");
+        const originalMovies = this.state.movies;
+
         const movies = this.state.movies.filter(m => m._id !== movie._id);
         this.setState({ movies });
+
+        try {
+            await http.delete(config.moviesEndpoint + '/' + movie._id);
+        } catch (ex) {
+            if (ex.response && ex.response.status === 404)
+                alert('This movie has already been deleted!');
+            this.setState({ movies: originalMovies });
+        }
     };
 
     handleLike = (movie) => {
