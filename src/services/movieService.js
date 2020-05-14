@@ -1,7 +1,7 @@
 import * as genresAPI from "./genreService";
-import axios from "axios";
+import http from "./httpService";
 
-const movies = axios.get('http://localhost:3900/api/movies');
+const movies = http.get('http://localhost:3900/api/movies');
 
 export function getMovies() {
   return movies;
