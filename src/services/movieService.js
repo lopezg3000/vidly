@@ -1,7 +1,8 @@
 import * as genresAPI from "./genreService";
 import http from "./httpService";
+import config from "../config.json";
 
-const movies = http.get('http://localhost:3900/api/movies');
+const movies = http.get(config.moviesEndpoint);
 
 export function getMovies() {
   return movies;
