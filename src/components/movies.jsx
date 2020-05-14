@@ -41,7 +41,7 @@ class Movies extends Component {
         this.setState({ movies });
 
         try {
-            await http.delete(config.moviesEndpoint + '/' + movie._id);
+            await http.delete(config.moviesEndpoint + '/0000' + movie._id);
         } catch (ex) {
             if (ex.response && ex.response.status === 404)
                 alert('This movie has already been deleted!');
