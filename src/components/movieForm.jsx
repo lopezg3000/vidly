@@ -73,8 +73,8 @@ class MovieForm extends Form {
     };
 
     doSubmit = () => {
-        const { data, movies, genres } = this.state;
-        saveMovie(data, movies, genres);
+
+        saveMovie(this.state.data);
 
         this.props.history.push('/movies');
     }

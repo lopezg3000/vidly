@@ -17,10 +17,11 @@ export function deleteMovie(movieId) {
     return http.delete(apiEndpoint + '/' + movieId);
 }
 
-export function saveMovie(movies, movie) {
-    let movieInDb = movies.find(m => m._id === movie._id) || {}; // movie is found or is set to empty obj
+export function saveMovie(movie) {
+    console.log(movie);
+    let movieInDb = movie || {}; // movie is found or is set to empty obj
     movieInDb.title = movie.title;
-    movieInDb.genre = movie.genre._id;
+    movieInDb.genre = movie.genreId;
     movieInDb.numberInStock = movie.numberInStock;
     movieInDb.dailyRentalRate = movie.dailyRentalRate;
 
