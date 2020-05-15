@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import MovieTable from './moviesTable'
-import { getMovies } from '../services/movieService';
+import { getMovies, deleteMovie } from '../services/movieService';
 import { getGenres } from '../services/genreService';
-import http from '../services/httpService';
 import { toast } from 'react-toastify'
-import config from '../config.json';
 import ListGroup from './common/listGroup';
 import Pagination from './common/pagination';
 import SearchBox from './common/searchBox';
 import { paginate } from '../utils/paginate';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-
-//Node Backend Set up, but need to create repo on github
 
 class Movies extends Component {
     state = {
@@ -42,7 +38,7 @@ class Movies extends Component {
         this.setState({ movies });
 
         try {
-            await http.delete(config.moviesEndpoint + '/' + movie._id);
+            await deleteMovie(movie._id);
         } catch (ex) {
             if (ex.response && ex.response.status === 404)
                 toast.error('This movie has already been deleted!');

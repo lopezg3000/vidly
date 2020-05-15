@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
-import { ToastContainer } from 'react-toastify';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import NavBar from './components/common/navbar';
 import Movies from './components/movies';
 import Customers from './components/customers';
