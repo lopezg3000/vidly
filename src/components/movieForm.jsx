@@ -14,7 +14,6 @@ class MovieForm extends Form {
             dailyRentalRate: ''
         },
         genres: [], //Will Change once componentDidMount is used to get genres from imaginary server.
-        movies: [],
         errors: {}
     }
 
@@ -38,31 +37,36 @@ class MovieForm extends Form {
             .label('Daily Rental Rate')
     };
 
-    async componentDidMount() {
+    async populateGenres() {
         const { data: genres } = await getGenres();
-
-        const { data: movies } = await getMovies();
-
         this.setState({ genres });
+    }
 
-        const movieId = this.props.match.params.id;
-        if (movieId === 'new') return; //return because there is no need to populate form with an existing movie object
+    async populateMovie() {
+        try {
+            const movieId = this.props.match.params.id;
+            if (movieId === 'new') return; //return because there is no need to populate form with an existing movie object
 
-        const { data: movie } = await getMovie(movieId);
-        if (!movie) return this.props.history.replace('/not-found');
-        //user will be redirected to not found page if id is not found ie wrong url.
-        //replace because pushing the back button will cause infinite loop of invalidIdPage and not-found page
-        //return keyword used so that the rest of the code is not executed. Don't assume that rest of the code will not be executed.
-        this.setState({ data: this.mapToViewModel(movie) });
-        //updating data property but not setting it to the movie object that is recieved to the server.
-        //restful api's are general purpose; not built for a specific page. Data that is returned is often used on several pages. 
-        //Each page needs a piece of that data. it is also possible that what should be displayed on the page is a little different from the structure of the data.
-        //mapToViewModel method created and used to get a movie object that is recieved from the server and maps it to a different kind of movie object that
-        //can be used on this form. movie object returned is referred to as a view model, a model with a view. 
+            const { data: movie } = await getMovie(movieId);
+            this.setState({ data: this.mapToViewModel(movie) });
+            //updating data property but not setting it to the movie object that is recieved to the server.
+            //restful api's are general purpose; not built for a specific page. Data that is returned is often used on several pages. 
+            //Each page needs a piece of that data. it is also possible that what should be displayed on the page is a little different from the structure of the data.
+            //mapToViewModel method created and used to get a movie object that is recieved from the server and maps it to a different kind of movie object that
+            //can be used on this form. movie object returned is referred to as a view model, a model with a view. 
+        } catch (ex) {
+            if (ex.response && ex.response.status === 404)
+                this.props.history.replace('/not-found');
+        }
+    }
+
+    async componentDidMount() {
+        await this.populateGenres();
+        await this.populateMovie();
     };
 
     mapToViewModel(movie) {
-        console.log(movie);
+        // console.log(movie);
         return {
             _id: movie._id,
             title: movie.title,
@@ -72,12 +76,11 @@ class MovieForm extends Form {
         }
     };
 
-    doSubmit = () => {
-
-        saveMovie(this.state.data);
+    doSubmit = async () => {
+        await saveMovie(this.state.data);
 
         this.props.history.push('/movies');
-    }
+    };
 
 
     render() {
