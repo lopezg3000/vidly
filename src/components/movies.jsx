@@ -75,6 +75,7 @@ class Movies extends Component {
     };
 
     handleSaveMovie = newMovie => {
+        // console.log(newMovie);
         const movie = newMovie;
         const movies = [movie, ...this.state.movies]
         this.setState({ movies })

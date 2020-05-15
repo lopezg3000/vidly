@@ -1,8 +1,8 @@
 import React from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
-import { getMovie, saveMovie } from '../services/fakeMovieService';
-import { getGenres } from "../services/fakeGenreService";
+import { getMovie, saveMovie, getMovies } from '../services/movieService';
+import { getGenres } from "../services/genreService";
 import _ from 'lodash';
 
 class MovieForm extends Form {
@@ -14,6 +14,7 @@ class MovieForm extends Form {
             dailyRentalRate: ''
         },
         genres: [], //Will Change once componentDidMount is used to get genres from imaginary server.
+        movies: [],
         errors: {}
     }
 
@@ -37,14 +38,17 @@ class MovieForm extends Form {
             .label('Daily Rental Rate')
     };
 
-    componentDidMount() {
-        const genres = getGenres();
+    async componentDidMount() {
+        const { data: genres } = await getGenres();
+
+        const { data: movies } = await getMovies();
+
         this.setState({ genres });
 
         const movieId = this.props.match.params.id;
         if (movieId === 'new') return; //return because there is no need to populate form with an existing movie object
 
-        const movie = getMovie(movieId);
+        const { data: movie } = await getMovie(movieId);
         if (!movie) return this.props.history.replace('/not-found');
         //user will be redirected to not found page if id is not found ie wrong url.
         //replace because pushing the back button will cause infinite loop of invalidIdPage and not-found page
@@ -58,6 +62,7 @@ class MovieForm extends Form {
     };
 
     mapToViewModel(movie) {
+        console.log(movie);
         return {
             _id: movie._id,
             title: movie.title,
@@ -68,7 +73,8 @@ class MovieForm extends Form {
     };
 
     doSubmit = () => {
-        saveMovie(this.state.data);
+        const { data, movies, genres } = this.state;
+        saveMovie(data, movies, genres);
 
         this.props.history.push('/movies');
     }
