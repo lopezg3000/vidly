@@ -19,7 +19,7 @@ export function saveMovie(movie) {
     if (movie._id) {
         const body = { ...movie };
         delete body._id;
-        return http.put(movieUrl(movie_id), body); //body object cannot have id.
+        return http.put(movieUrl(movie._id), body); //body object cannot have id.
     }
 
     return http.post(apiEndpoint, movie);
