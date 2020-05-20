@@ -3,6 +3,8 @@ import Joi from 'joi-browser';
 import Form from './common/form';
 import * as userService from '../services/userService';
 
+//Learned about Authentication
+
 class RegisterForm extends Form {
     state = {
         data: { username: '', password: '', name: '' },
