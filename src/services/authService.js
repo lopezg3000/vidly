@@ -9,6 +9,10 @@ export async function login(email, password) {
     return localStorage.setItem('token', jwt);
 }
 
+export function loginWithJwt(jwt) {
+    return localStorage.setItem('token', jwt);
+}
+
 export function logout() {
     return localStorage.removeItem('token');
 }
@@ -26,5 +30,6 @@ export function getCurrentUser() {
 export default {
     login,
     logout,
-    getCurrentUser
+    getCurrentUser,
+    loginWithJwt
 }
