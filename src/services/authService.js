@@ -7,15 +7,15 @@ const tokenKey = 'token';
 
 export async function login(email, password) {
     const { data: jwt } = await http.post(apiEndpoint, { email, password });
-    return localStorage.setItem(tokenKey, jwt);
+    localStorage.setItem(tokenKey, jwt);
 }
 
 export function loginWithJwt(jwt) {
-    return localStorage.setItem(tokenKey, jwt);
+    localStorage.setItem(tokenKey, jwt);
 }
 
 export function logout() {
-    return localStorage.removeItem(tokenKey);
+    localStorage.removeItem(tokenKey);
 }
 
 export function getCurrentUser() {
@@ -30,7 +30,7 @@ export function getCurrentUser() {
 
 export default {
     login,
+    loginWithJwt,
     logout,
-    getCurrentUser,
-    loginWithJwt
+    getCurrentUser
 }

@@ -10,7 +10,7 @@ import MovieForm from './components/movieForm';
 import NotFound from './components/notFound';
 import RegisterForm from './components/registerForm'
 import LoginForm from './components/loginForm';
-import Logout from './components/common/logout';
+import Logout from './components/logout';
 import auth from './services/authService';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
@@ -22,7 +22,6 @@ class App extends Component {
 
     componentDidMount() {
         const user = auth.getCurrentUser();
-
         this.setState({ user });
     }
 
