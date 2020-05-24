@@ -3,6 +3,8 @@ import { apiUrl } from "../config.json";
 
 const apiEndpoint = apiUrl + "/auth";
 
-export function login(email, password) {
-    return http.post(apiEndpoint, { email, password });
+export async function login(email, password) {
+    const { data: jwt } = await http.post(apiEndpoint, { email, password });
+    return localStorage.setItem('token', jwt);
 }
+
