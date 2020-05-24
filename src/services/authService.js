@@ -1,3 +1,4 @@
+import jwtDecode from 'jwt-decode';
 import http from "./httpService";
 import { apiUrl } from "../config.json";
 
@@ -24,5 +25,6 @@ export function getCurrentUser() {
 
 export default {
     login,
-    logout
+    logout,
+    getCurrentUser
 }
