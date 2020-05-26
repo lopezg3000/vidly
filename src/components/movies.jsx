@@ -10,6 +10,8 @@ import { paginate } from '../utils/paginate';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 
+//Will Implement How to Hide Elements
+
 class Movies extends Component {
     state = {
         search: '',
