@@ -3,13 +3,13 @@ import auth from '../../services/authService';
 import { Route, Redirect } from 'react-router-dom';
 
 
-const ProtectedRoute = ({ path, component: Component }) => {
+const ProtectedRoute = ({ path, component: Component, render }) => {
     return (
         <Route
             path={path}
             render={props => {
                 if (!auth.getCurrentUser()) return <Redirect to='/login' />;
-                return <Component {...props} />
+                return Component ? <Component {...props} /> : render(props);
             }}
         />
     );
