@@ -29,15 +29,16 @@ class TableHeader extends Component {
         return (
             <thead>
                 <tr>
-                    {this.props.columns.map(column => (
-                        <th
-                            style={{ cursor: 'pointer' }}
-                            key={column.path || column.key}
-                            onClick={() => this.raiseSort(column.path)}
-                        >
-                            {column.label} {this.renderSortIcon(column)}
-                        </th>
-                    ))}
+                    {this.props.columns.map(column => {
+                        if (column.key || column.path) return (
+                            <th
+                                style={{ cursor: 'pointer' }}
+                                key={column.path || column.key}
+                                onClick={() => this.raiseSort(column.path)}
+                            >
+                                {column.label} {this.renderSortIcon(column)}
+                            </th>);
+                    })}
                 </tr>
             </thead>
         );
