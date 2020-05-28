@@ -20,15 +20,11 @@ class TableBody extends Component {
             <tbody>
                 {data.map(item => (
                     <tr key={item[valueProperty]}>
-                        {columns.map(column => {
-                            if (column.key || column.path) return (
-                                <td key={this.createKey(item, column)}>
-                                    {this.renderCell(item, column, valueProperty)}
-                                </td>
-
-                            )
-                            return null;
-                        })}
+                        {columns.map(column => (
+                            <td key={this.createKey(item, column)}>
+                                {this.renderCell(item, column, valueProperty)}
+                            </td>
+                        ))}
                     </tr>
                 ))}
             </tbody>
