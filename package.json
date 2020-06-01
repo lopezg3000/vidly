@@ -1,6 +1,9 @@
 {
   "name": "vidly",
   "version": "0.1.0",
+  "engines": {
+    "node": "12.6.x"
+  },
   "private": true,
   "dependencies": {
     "@sentry/browser": "^5.15.5",
